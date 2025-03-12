@@ -155,7 +155,7 @@ elif st.session_state.page == "⚙️ 功能":
 
 
     # 显示 Logo
-    st.image("E:/WZH/分析/photo/图片1.png", width=200)
+    st.image("./photo/图片1.png", width=200)
     # 页面标题
     st.title("Hydrogen Cell LifeX")
     # 自定义页面样式
