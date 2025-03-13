@@ -98,7 +98,7 @@ if st.session_state.page == "🏠 Home":
     """
     # 应用自定义 CSS 样式
     st.markdown(css, unsafe_allow_html=True)
-    st.image("E:/WZH/分析/photo/图片1.png", width=200)  # 替换为你的LOGO路径
+    st.image("./photo/图片1.png", width=200)  # 替换为你的LOGO路径
     st.title("HydrogenCell LifeX")
 
     st.write("""
@@ -156,7 +156,7 @@ elif st.session_state.page == "⚙️ 功能":
 
 
     # 显示 Logo
-    st.image("E:/WZH/分析/photo/图片1.png", width=200)
+    st.image("./photo/图片1.png", width=200)
     # 页面标题
     st.title("Hydrogen Cell LifeX")
     # 自定义页面样式
