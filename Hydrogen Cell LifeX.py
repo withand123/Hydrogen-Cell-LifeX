@@ -210,8 +210,10 @@ elif st.session_state.page == "⚙️ 功能":
                 data.index = data.pop('Time (h)')
                 # 设置绘图风格
                 sns.set(style="whitegrid", font_scale=1.2)  # 适当增大字体比例
-                mpl.font_manager.fontManager.addfont('./font/simsun.ttf') 
-                mpl.rcParams['font.sans-serif'] = ['SimHei']  # 指定默认字体
+                mpl.font_manager.fontManager.addfont('./font/Simhei.ttf') 
+                from matplotlib.font_manager import FontProperties
+                simhei = FontProperties(family='SimHei', size=16)
+                mpl.rcParams['font.sans-serif'] = ['Times New Roman']  # 指定默认字体           
                 mpl.rcParams['axes.unicode_minus'] = False  # 负号- 显示方块
                 # 定义颜色调色板
                 palette = sns.color_palette("Set2")
@@ -220,8 +222,8 @@ elif st.session_state.page == "⚙️ 功能":
                 ax = plt.gca()
                 sns.boxplot(data=data, ax=ax, palette=palette)
                 # ax_big.set_title('变量箱线图')
-                ax.set_xlabel('变量', fontsize = 16)
-                ax.set_ylabel('范围', fontsize = 16)
+                ax.set_xlabel('变量', fontproperties=simhei)
+                ax.set_ylabel('范围', fontproperties=simhei)
                 ax.tick_params(axis='both', labelsize=16)  # 调整刻度标签字体大小
                 # 调整布局并显示图形
                 plt.tight_layout()
@@ -297,7 +299,10 @@ elif st.session_state.page == "⚙️ 功能":
                 from matplotlib import pyplot as plt
                 from pylab import mpl
                 import numpy as np
-                mpl.rcParams['font.sans-serif'] = ['SimHei']  # 指定默认字体
+                mpl.font_manager.fontManager.addfont('./font/Simhei.ttf') 
+                from matplotlib.font_manager import FontProperties
+                simhei = FontProperties(family='SimHei', size=16)
+                mpl.rcParams['font.sans-serif'] = ['Times New Roman']  # 指定默认字体    
                 mpl.rcParams['axes.unicode_minus'] = False  # 负号- 显示方块
                 import joblib
                 # 加载降维后的数据
@@ -329,7 +334,7 @@ elif st.session_state.page == "⚙️ 功能":
                 plt.ylabel(f"PC2 ({explained_variance_ratio[1] * 100:.2f}%)", fontsize=16)
                 plt.xticks(fontsize=16)
                 plt.yticks(fontsize=16)
-                plt.legend(loc='upper left', prop={'size': 16})
+                plt.legend(loc='upper left',prop={'family': 'SimHei','size': 16})
 
                 st.session_state.fig1 = fig
                 st.session_state.file_name = "pca_plot.png"  # 设置文件名
@@ -469,18 +474,21 @@ elif st.session_state.page == "⚙️ 功能":
                 data_time_try = len(original_try)
                 from matplotlib import pyplot as plt
                 from pylab import mpl
-                mpl.rcParams['font.sans-serif'] = ['SimHei']  # 指定默认字体
+                mpl.font_manager.fontManager.addfont('./font/Simhei.ttf') 
+                from matplotlib.font_manager import FontProperties
+                simhei = FontProperties(family='SimHei', size=16)
+                mpl.rcParams['font.sans-serif'] = ['Times New Roman']  # 指定默认字体   
                 mpl.rcParams['axes.unicode_minus'] = False  # 负号- 显示方块
                 from matplotlib import pyplot as plt
                 fig, ax = plt.subplots(figsize=(10, 8))  # 调整大图尺寸
                 plt.plot(range(data_time_try), original_try, color='c', label='实际值')
                 plt.plot(range(data_time_try), pred_try, color='red', label='FC数据集模型')
-                plt.xlabel('时间(h)')
-                plt.ylabel('电堆电压(V)')
+                plt.xlabel('时间(h)',fontproperties=simhei)
+                plt.ylabel('电堆电压(V)',fontproperties=simhei)
 
                 plt.xticks(fontsize=16)
                 plt.yticks(fontsize=16)
-                plt.legend(loc='upper left', prop={'size': 16})
+                plt.legend(loc='upper left',prop={'family': 'SimHei','size': 16})
                 st.session_state.fig1 = fig
                 st.session_state.file_name = "model_prediction.png"  # 设置文件名
                 st.pyplot(fig)
