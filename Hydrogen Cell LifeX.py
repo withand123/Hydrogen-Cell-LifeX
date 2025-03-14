@@ -210,7 +210,7 @@ elif st.session_state.page == "⚙️ 功能":
                 data.index = data.pop('Time (h)')
                 # 设置绘图风格
                 sns.set(style="whitegrid", font_scale=1.2)  # 适当增大字体比例
-                mpl.font_manager.fontManager.addfont('./font/Simhei.ttf') 
+                mpl.font_manager.fontManager.addfont('./font/simsun.ttf') 
                 mpl.rcParams['font.sans-serif'] = ['SimHei']  # 指定默认字体
                 mpl.rcParams['axes.unicode_minus'] = False  # 负号- 显示方块
                 # 定义颜色调色板
