@@ -208,7 +208,7 @@ elif st.session_state.page == "⚙️ 功能":
                 from matplotlib import pyplot as plt
                 from pylab import mpl
                 from matplotlib.font_manager import FontProperties
-                simsun = FontProperties(family='SimSun', size=16)
+                simsun = FontProperties(family='SimHei', size=16)
 
                 data.index = data.pop('Time (h)')
                 # 设置绘图风格
@@ -331,7 +331,7 @@ elif st.session_state.page == "⚙️ 功能":
                 plt.ylabel(f"PC2 ({explained_variance_ratio[1] * 100:.2f}%)", fontsize=16)
                 plt.xticks(fontsize=16)
                 plt.yticks(fontsize=16)
-                plt.legend(loc='upper left', prop={'family': 'SimSun', 'size': 16})
+                plt.legend(loc='upper left', prop={'family': 'SimHei', 'size': 16})
 
                 st.session_state.fig1 = fig
                 st.session_state.file_name = "pca_plot.png"  # 设置文件名
@@ -446,7 +446,7 @@ elif st.session_state.page == "⚙️ 功能":
                 mpl.rcParams['font.sans-serif'] = ['Times New Roman']  # 指定默认字体
                 mpl.rcParams['axes.unicode_minus'] = False  # 负号- 显示方块
                 from matplotlib.font_manager import FontProperties
-                simsun = FontProperties(family='SimSun', size=16)
+                simsun = FontProperties(family='SimHei', size=16)
                 # 使用 LOESS 平滑数据
                 lowess = sm.nonparametric.lowess(sampled_data['Utot (V)'], sampled_data['Time (h)'],
                                                  frac=window_width / len(sampled_data))
@@ -482,7 +482,7 @@ elif st.session_state.page == "⚙️ 功能":
 
                 plt.xticks(fontsize=16)
                 plt.yticks(fontsize=16)
-                plt.legend(loc='upper left', prop={'family': 'SimSun', 'size': 16})
+                plt.legend(loc='upper left', prop={'family': 'SimHei', 'size': 16})
                 st.session_state.fig1 = fig
                 st.session_state.file_name = "model_prediction.png"  # 设置文件名
                 st.pyplot(fig)
