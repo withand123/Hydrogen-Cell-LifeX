@@ -58,7 +58,7 @@ st.markdown(
         }   
         /* 被点击时的效果 */
         div.stButton > button:focus {
-            background-color: #e3e5e7; /* 点击时的背景颜色 */
+            background-color: #e3e5e7; 
             color: initial !important;
         }
 
@@ -70,10 +70,10 @@ st.markdown(
     """
     <style>
         .appview-container {
-            background-color: #f9f9f9;  /* 这里换成你想要的颜色 */
+            background-color: #f9f9f9;  
         }
         header {
-            background-color: #f9f9f9!  important; /* 这里换成你想要的颜色 */
+            background-color: #f9f9f9!  important; 
         }
     </style>
     """,
@@ -101,7 +101,7 @@ if st.session_state.page == "🏠 Home":
     """
     # 应用自定义 CSS 样式
     st.markdown(css, unsafe_allow_html=True)
-    st.image("./photo/图片1.png", width=200)  # 替换为你的LOGO路径
+    st.image("./photo/图片1.png", width=200)  
     st.title("Hydrogen Cell LifeX")
 
     st.write("""
@@ -123,7 +123,7 @@ if st.session_state.page == "🏠 Home":
     """)
 
     st.write("""
-        **Hydrogen Cell Life的举例文件！**  
+        **Hydrogen Cell Life的示例文件！**  
         https://github.com/withand123/Hydrogen-Cell-LifeX/tree/main/sample_data
     """)
     # 创建按钮
