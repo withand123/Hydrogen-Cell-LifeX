@@ -7,7 +7,7 @@ import webbrowser
 import statsmodels.api as sm
 
 # 设置页面标题和图标
-st.set_page_config(page_title="HydrogenCell LifeX",
+st.set_page_config(page_title="Hydrogen Cell LifeX",
                    page_icon="./photo/顶部栏.png",
                    # layout="wide",
                    initial_sidebar_state="expanded"
@@ -16,15 +16,19 @@ st.set_page_config(page_title="HydrogenCell LifeX",
 st.sidebar.image("./photo/logo.png", width=200)
 # 侧边栏
 import base64
+
+
 def image_to_base64(image_path):
     with open(image_path, "rb") as img_file:
         return base64.b64encode(img_file.read()).decode()
+
+
 your_base64_logo = image_to_base64("./photo/顶部栏.png")
 st.sidebar.markdown(
     f"""
     <div style="display: flex; align-items: center;">
         <img src="data:image/png;base64,{your_base64_logo}" width="30"/>
-        <span style="font-size: 27px; font-weight: bold; margin-left: 10px;">HydrogenCell LifeX</span>
+        <span style="font-size: 27px; font-weight: bold; margin-left: 10px;">Hydrogen Cell LifeX</span>
     </div>
     """,
     unsafe_allow_html=True,
@@ -82,7 +86,6 @@ if st.sidebar.button("🏠 Home"):
 if st.sidebar.button("⚙️ 功能"):
     st.session_state.page = "⚙️ 功能"
 
-
 # 首页内容
 if st.session_state.page == "🏠 Home":
 
@@ -99,28 +102,28 @@ if st.session_state.page == "🏠 Home":
     # 应用自定义 CSS 样式
     st.markdown(css, unsafe_allow_html=True)
     st.image("./photo/图片1.png", width=200)  # 替换为你的LOGO路径
-    st.title("HydrogenCell LifeX")
+    st.title("Hydrogen Cell LifeX")
 
     st.write("""
-        **欢迎使用HydrogenCell LifeX！**  
-                       
+        **欢迎使用Hydrogen Cell LifeX！**  
+
         本软件是一种基于降维分类的氢燃料电池寿命预测软件，旨在解决目前氢燃料电池寿命预测领域单一模型对复杂多变工况数据预测能力不足的问题。模型思路：首先通过PCA降维处理不同的数据集，形成一个综合的相似性图谱。通过这个图谱，我们可以清晰地识别出不同工况下的氢燃料电池的特征表现，并进一步比较它们之间的相似性。在此基础上，当引入新的数据时，系统可以通过与已有图谱进行比对，找到与新数据最为相似的工况，并使用对应的数据集模型进行预测。
-            
+
         目前，我们已经收集了三组数据集进行进行降维，形成一个相似性图谱。经过初步测试，模型在新数据上的预测结果表现良好，验证了我们的思路和方法的有效性。
     """)
 
     st.write("""
-        **HydrogenCell Life功能介绍！**  
+        **Hydrogen Cell Life功能介绍！**  
         - **功能区**： 功能区提供了一文件上传的按钮
         - **箱线图分析**：用于可视化上传的新数据数据分布情况  
         - **PCA降维相似性分析**：对新数据进行降维，再通过与已有图谱进行比对，找到与新数据最为相似的工况
         - **模型预测结果分析**：使用对应模型进行预测
-        
+
         请在左侧选择“功能”以进入分析界面。
     """)
 
     st.write("""
-        **HydrogenCell Life的举例文件！**  
+        **Hydrogen Cell Life的举例文件！**  
         https://github.com/withand123/HydrogenCell-Life
     """)
     # 创建按钮
@@ -153,7 +156,6 @@ elif st.session_state.page == "⚙️ 功能":
         st.session_state.fig1 = None  # 存储当前图像
     if "closest_dataset" not in st.session_state:
         st.session_state.closest_dataset = None
-
 
     # 显示 Logo
     st.image("./photo/图片1.png", width=200)
@@ -206,7 +208,7 @@ elif st.session_state.page == "⚙️ 功能":
                 from matplotlib import pyplot as plt
                 from pylab import mpl
                 from matplotlib.font_manager import FontProperties
-                simsun = FontProperties(family='SimSun', size=16)
+                simsun = FontProperties(family='SimHei', size=16)
 
                 data.index = data.pop('Time (h)')
                 # 设置绘图风格
@@ -216,12 +218,12 @@ elif st.session_state.page == "⚙️ 功能":
                 # 定义颜色调色板
                 palette = sns.color_palette("Set2")
                 # 创建一个画布，绘制大图箱线图
-                fig,ax = plt.subplots(figsize=(12, 6))  # 调整大图尺寸
+                fig, ax = plt.subplots(figsize=(12, 6))  # 调整大图尺寸
                 ax = plt.gca()
                 sns.boxplot(data=data, ax=ax, palette=palette)
                 # ax_big.set_title('变量箱线图')
-                ax.set_xlabel('变量',fontproperties=simsun)
-                ax.set_ylabel('范围',fontproperties=simsun)
+                ax.set_xlabel('变量', fontproperties=simsun)
+                ax.set_ylabel('范围', fontproperties=simsun)
                 ax.tick_params(axis='both', labelsize=16)  # 调整刻度标签字体大小
                 # 调整布局并显示图形
                 plt.tight_layout()
@@ -229,7 +231,6 @@ elif st.session_state.page == "⚙️ 功能":
                 st.session_state.fig1 = fig
                 st.session_state.file_name = "boxplot.png"  # 设置文件名
                 st.pyplot(st.session_state.fig1)
-
 
                 # 异常值处理函数
                 def count_outliers(dff):
@@ -265,7 +266,8 @@ elif st.session_state.page == "⚙️ 功能":
                         lower_bound_3 = Q1 - 3 * IQR
                         upper_bound_3 = Q3 + 3 * IQR
                         # 删除极端异常值
-                        processed_df = processed_df[(processed_df[column] >= lower_bound_3) & (processed_df[column] <= upper_bound_3)]
+                        processed_df = processed_df[
+                            (processed_df[column] >= lower_bound_3) & (processed_df[column] <= upper_bound_3)]
                     return processed_df, outliers
 
                 # 处理异常值
@@ -281,6 +283,7 @@ elif st.session_state.page == "⚙️ 功能":
 
                 # 确认数据已更新
                 st.success("异常值已处理，数据已更新！")
+
 
             xiangxian(st.session_state.df)
         else:
@@ -317,7 +320,7 @@ elif st.session_state.page == "⚙️ 功能":
                 explained_variance_ratio = pca.explained_variance_ratio_
                 import numpy as np
                 # 可视化
-                fig,ax = plt.subplots(figsize=(10, 8))
+                fig, ax = plt.subplots(figsize=(10, 8))
                 for label in set(labels):
                     mask = np.array(labels) == label
                     plt.scatter(data_pca[mask, 0], data_pca[mask, 1], color=colors[label], label=label)
@@ -328,7 +331,7 @@ elif st.session_state.page == "⚙️ 功能":
                 plt.ylabel(f"PC2 ({explained_variance_ratio[1] * 100:.2f}%)", fontsize=16)
                 plt.xticks(fontsize=16)
                 plt.yticks(fontsize=16)
-                plt.legend(loc='upper left',prop={'family': 'SimSun','size': 16})
+                plt.legend(loc='upper left', prop={'family': 'SimHei', 'size': 16})
 
                 st.session_state.fig1 = fig
                 st.session_state.file_name = "pca_plot.png"  # 设置文件名
@@ -364,6 +367,7 @@ elif st.session_state.page == "⚙️ 功能":
                 # 确认数据已更新
                 st.success(f"该数据集靠近{st.session_state.closest_dataset}！")
 
+
             pca_effect(st.session_state.df)
         else:
             st.warning("请先上传数据！")
@@ -371,7 +375,7 @@ elif st.session_state.page == "⚙️ 功能":
         st.write("### 模型预测结果分析")
         if st.session_state.closest_dataset is not None:
             # 模型预测效果
-            def model_effect(closest_dataset):
+            def model_effect(closest_dataset, data):
                 import pandas as pd
                 import numpy as np
                 import os
@@ -380,30 +384,26 @@ elif st.session_state.page == "⚙️ 功能":
                 from tensorflow.keras.models import load_model
                 # 根据closest_dataset判断使用哪个模型
                 if closest_dataset == 'FC数据集':
-                    model = load_model('./model/FC_LSTM_KAN.keras', safe_mode=False)
-                    data = pd.read_csv('./sampled_FC.csv', index_col=0)
-                    columns = ['Time (h)', 'Utot (V)', 'I (A)', 'TinH2 (℃)', 'ToutH2 (℃)',
-                               'TinAIR (℃)', 'PinH2 (Kpa)', 'PoutH2 (Kpa)', 'PinAIR (Kpa)']
-                    data.columns = columns
+                    def kan_transform(x):
+                        return tf.square(x) * 0.45
+
+                    model = load_model('./model/FC_kan_lstm_model.keras',
+                                       custom_objects={'kan_transform': kan_transform})
                 elif closest_dataset == '国家数据中心数据集':
-                    model = load_model('./model/guojia_LSTM_KAN.keras', safe_mode=False)
-                    data = pd.read_csv('./sampled_guojia.csv', index_col=0)
-                    columns = ['Time (h)', 'Utot (V)', 'I (A)', 'TinH2 (℃)', 'ToutH2 (℃)',
-                               'TinAIR (℃)', 'PinH2 (Kpa)', 'PoutH2 (Kpa)', 'PinAIR (Kpa)']
-                    data.columns = columns
+                    def kan_transform(x):
+                        return tf.square(x) * 0.395
+
+                    model = load_model('./model/guojia_kan_lstm_model.keras',
+                                       custom_objects={'kan_transform': kan_transform})
                 elif closest_dataset == '同济大学数据集':
-                    model = load_model('./model/tongji_LSTM_KAN.keras', safe_mode=False)
-                    data = pd.read_csv('./tongji_sampled.csv', index_col=0)
-                    columns = ['Time (h)', 'Utot (V)', 'I (A)', 'TinH2 (℃)', 'ToutH2 (℃)',
-                               'TinAIR (℃)', 'PinH2 (Kpa)', 'PoutH2 (Kpa)', 'PinAIR (Kpa)']
-                    data.columns = columns
-                data.index = data.pop('Time (h)')
-                split_index = int(np.floor(len(data) * 0.6))
-                train_data = data.iloc[:split_index]
-                test_data = data.iloc[split_index:]
+                    def kan_transform(x):
+                        return tf.square(x) * 0.45
+
+                    # 加载模型时指定 custom_objects
+                    model = load_model('./model/tongji_kan_lstm_model.keras',
+                                       custom_objects={'kan_transform': kan_transform})
                 from sklearn import preprocessing
                 min_max_scalar = preprocessing.MinMaxScaler()
-                data_for_training_scaled = min_max_scalar.fit_transform(train_data)
                 step = 1
                 ahead = 1
 
@@ -416,72 +416,76 @@ elif st.session_state.page == "⚙️ 功能":
                     return np.array(dataX), np.array(dataY)
 
                 # 读入新数据
-                sampled_data1 = pd.read_csv('generated_df7.csv', index_col=0)
-                # 生成从 1 到 1000H 的时间标签
-                time_labels = [f'{i}' for i in range(1, len(sampled_data1) + 1)]
-                # 将时间列替换为新的时间标签
-                sampled_data1['Time (h)'] = time_labels
-                import statsmodels.api as sm
-                data_1 = pd.read_csv('new_data7.csv', index_col=0)
+                # sampled_data1 = pd.read_csv('generated_df7.csv', index_col=0)
+                # # 生成从 1 到 1000H 的时间标签
+                # time_labels = [f'{i}' for i in range(1, len(sampled_data1) + 1)]
+                # # 将时间列替换为新的时间标签
+                # sampled_data1['Time (h)'] = time_labels
+                # import statsmodels.api as sm
+                # data_1 = pd.read_csv('new_data7.csv', index_col=0)
+                # 获取时间列的最大值 c
+                max_time = data['Time (h)'].max()
+                # 定义时间区间（从0到最大时间，每小时一个区间）
+                time_intervals = [(i, i + 1) for i in range(int(max_time) + 1)]
+                # 存储每个时间区间中随机选择的一行数据
+                sampled_data = pd.DataFrame()
+                for start, end in time_intervals:
+                    # 从时间区间[start, end)中筛选数据
+                    interval_data = data[(data['Time (h)'] >= start) & (data['Time (h)'] < end)]
 
+                    if not interval_data.empty:
+                        # 随机选择一行数据
+                        sampled_row = interval_data.sample(n=1)
+                        sampled_data = pd.concat([sampled_data, sampled_row], ignore_index=True)
                 # 设置 LOESS 平滑的参数
                 window_width = 20
                 window_width1 = 25
                 import matplotlib.pyplot as plt
                 from pylab import mpl
-                import seaborn as snss
-                mpl.rcParams['font.sans-serif'] = ['SimHei']  # 指定默认字体
+                import seaborn as sns
+                mpl.rcParams['font.sans-serif'] = ['Times New Roman']  # 指定默认字体
                 mpl.rcParams['axes.unicode_minus'] = False  # 负号- 显示方块
-                # plt.figure(figsize=(10, 5))
-                # plt.plot(data_1['Time (h)'], data_1['Utot (V)'], label='原始数据', alpha=0.7, color='red')
-                # plt.plot(sampled_data1['Time (h)'], sampled_data1['Utot (V)'], label='重构数据', alpha=0.7, color='blue')
+                from matplotlib.font_manager import FontProperties
+                simsun = FontProperties(family='SimHei', size=16)
                 # 使用 LOESS 平滑数据
-                lowess = sm.nonparametric.lowess(sampled_data1['Utot (V)'], sampled_data1['Time (h)'],
-                                                 frac=window_width / len(sampled_data1))
-                lowess1 = sm.nonparametric.lowess(sampled_data1['I (A)'], sampled_data1['Time (h)'],
-                                                  frac=window_width1 / len(sampled_data1))
-                lowess2 = sm.nonparametric.lowess(sampled_data1['PoutH2 (Kpa)'], sampled_data1['Time (h)'],
-                                                  frac=window_width1 / len(sampled_data1))
-                # plt.plot(lowess[:, 0], lowess[:, 1], color='#00FF00', label='平滑数据')
-                # plt.xlabel('时间(h)', fontsize = 10)
-                # plt.ylabel('电堆电压(V)', fontsize = 10)
-                # plt.ylim(3.05, 3.4)
-                # plt.legend()
-                # plt.show()
-                sampled_data1['I (A)'] = lowess1[:, 1]
-                sampled_data1['Utot (V)'] = lowess[:, 1]
-                sampled_data1['PoutH2 (Kpa)'] = lowess2[:, 1]
-                sampled_data1.index = sampled_data1.pop('Time (h)')
-                data_for_testing_scaled1 = min_max_scalar.transform(sampled_data1)
+                lowess = sm.nonparametric.lowess(sampled_data['Utot (V)'], sampled_data['Time (h)'],
+                                                 frac=window_width / len(sampled_data))
+                lowess1 = sm.nonparametric.lowess(sampled_data['I (A)'], sampled_data['Time (h)'],
+                                                  frac=window_width1 / len(sampled_data))
+                lowess2 = sm.nonparametric.lowess(sampled_data['PoutH2 (Kpa)'], sampled_data['Time (h)'],
+                                                  frac=window_width1 / len(sampled_data))
+                sampled_data['I (A)'] = lowess1[:, 1]
+                sampled_data['Utot (V)'] = lowess[:, 1]
+                sampled_data['PoutH2 (Kpa)'] = lowess2[:, 1]
+                sampled_data.index = sampled_data.pop('Time (h)')
+                data_for_testing_scaled1 = min_max_scalar.fit_transform(sampled_data)
                 tryX, tryY = createXY(data_for_testing_scaled1, step, ahead)
                 prediction_try = model.predict(tryX)
                 prediction_copied_array_try = np.repeat(prediction_try, 8, axis=-1)
-                pred_try = min_max_scalar.inverse_transform(np.reshape(prediction_copied_array_try, (len(prediction_try), 8)))[
-                           :, 0]
+                pred_try = min_max_scalar.inverse_transform(
+                    np.reshape(prediction_copied_array_try, (len(prediction_try), 8)))[:, 0]
                 original_copies_array_try = np.repeat(tryY, 8, axis=-1)
-                original_try = min_max_scalar.inverse_transform(np.reshape(original_copies_array_try, (len(tryY), 8)))[:, 0]
+                original_try = min_max_scalar.inverse_transform(np.reshape(original_copies_array_try, (len(tryY), 8)))[
+                               :, 0]
                 # data_time = train.index[-len(original):]
                 data_time_try = len(original_try)
                 from matplotlib import pyplot as plt
                 from pylab import mpl
-                mpl.rcParams['font.sans-serif'] = ['SimHei']  # 指定默认字体
+                mpl.rcParams['font.sans-serif'] = ['Times New Roman']  # 指定默认字体
                 mpl.rcParams['axes.unicode_minus'] = False  # 负号- 显示方块
                 from matplotlib import pyplot as plt
-                fig, ax = plt.subplots(figsize=(12, 6))  # 调整大图尺寸
+                fig, ax = plt.subplots(figsize=(10, 8))  # 调整大图尺寸
                 plt.plot(range(data_time_try), original_try, color='c', label='实际值')
                 plt.plot(range(data_time_try), pred_try, color='red', label='FC数据集模型')
-                plt.xlabel('工作时间(h)', fontsize=12)
-                plt.ylabel('输出电压(V)', fontsize=12)
-                # plt.title('测试集', fontsize = 12)
-                # plt.ylim(-0.1, 0.2)
-                # plt.ylim(0,0.10)
-                plt.legend()
+                plt.xlabel('时间(h)', fontproperties=simsun)
+                plt.ylabel('电堆电压(V)', fontproperties=simsun)
 
+                plt.xticks(fontsize=16)
+                plt.yticks(fontsize=16)
+                plt.legend(loc='upper left', prop={'family': 'SimHei', 'size': 16})
                 st.session_state.fig1 = fig
                 st.session_state.file_name = "model_prediction.png"  # 设置文件名
                 st.pyplot(fig)
-
-
                 from sklearn import metrics
                 import numpy as np
                 # 评价
@@ -499,13 +503,16 @@ elif st.session_state.page == "⚙️ 功能":
                     pred_arr = pred_arr[mask]
                     mape = np.mean(abs(((actual_arr - pred_arr) / actual_arr)))
                     return mape
+
                 mape = mape(original_try, pred_try)
                 st.write('决定系数R2: %.6f' % metrics.r2_score(original_try, pred_try))
                 st.write('均方误差MSE: %.6f' % mse)
                 st.write('均方根误差RMSE: %.6f' % rmse)
                 st.write('平均绝对误差MAE: %.6f' % mae)
                 st.write('平均绝对百分比误差MAPE: %.6f' % mape)
-            model_effect(st.session_state.closest_dataset)
+
+
+            model_effect(st.session_state.closest_dataset, st.session_state.df)
         else:
             st.warning("请先进行PCA降维相似性分析！")
 
