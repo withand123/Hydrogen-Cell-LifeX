@@ -207,9 +207,6 @@ elif st.session_state.page == "⚙️ 功能":
                 # 确保数据中包含 'Time (h)' 这一列
                 from matplotlib import pyplot as plt
                 from pylab import mpl
-                from matplotlib.font_manager import FontProperties
-                simsun = FontProperties(family='SimHei', size=16)
-
                 data.index = data.pop('Time (h)')
                 # 设置绘图风格
                 sns.set(style="whitegrid", font_scale=1.2)  # 适当增大字体比例
@@ -222,8 +219,8 @@ elif st.session_state.page == "⚙️ 功能":
                 ax = plt.gca()
                 sns.boxplot(data=data, ax=ax, palette=palette)
                 # ax_big.set_title('变量箱线图')
-                ax.set_xlabel('变量', fontproperties=simsun)
-                ax.set_ylabel('范围', fontproperties=simsun)
+                ax.set_xlabel('变量', fontsize = 16)
+                ax.set_ylabel('范围', fontsize = 16)
                 ax.tick_params(axis='both', labelsize=16)  # 调整刻度标签字体大小
                 # 调整布局并显示图形
                 plt.tight_layout()
